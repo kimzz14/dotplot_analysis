@@ -153,7 +153,9 @@ yFAR = FAIDX_READER('ref/ref.fa.fai')
 
 image_DICT = {}
 
-lineN = 214999544
+fin = open('query_100.exact_pos')
+lineN = sum(1 for _ in fin)
+fin.close()
 
 jobTimer.reset()
 fin = open('query_100.exact_pos')
