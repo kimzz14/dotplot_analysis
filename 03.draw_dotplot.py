@@ -160,7 +160,7 @@ fin.close()
 jobTimer.reset()
 fin = open('query_100.exact_pos')
 for lineIDX, line in enumerate(fin):
-    if (lineIDX)%int(lineN / 1000) == 0:
+    if (lineIDX)%int(lineN / 100) == 0:
         jobTimer.check()
         percentage = float(lineIDX+1)/lineN
         print("Read File... [{0:6.2f}%] remainTime: {1}".format(percentage*100, jobTimer.remainTime(percentage)))
