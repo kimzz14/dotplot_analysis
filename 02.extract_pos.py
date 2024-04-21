@@ -62,13 +62,13 @@ for key, group in groupby(fin, lambda line: line.split('\t')[0]):
     for data in group:
         #print('[group] dHSP_LIST:', len(dHSP_LIST))
         #print('[group] nHSP_LIST:', len(nHSP_LIST))
-        cHSP_LIST = dHSP_LIST
-        dHSP_LIST = []
-
+        
         FLAG, RNAME, RPOS, MAPQ, CIGAR = data.split('\t')[1:6]
 
         if RNAME == '*': continue
 
+        cHSP_LIST = dHSP_LIST
+        dHSP_LIST = []
 
         FLAG = int(FLAG)
         if FLAG&16 == 16:
