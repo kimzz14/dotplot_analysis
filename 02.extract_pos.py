@@ -1,7 +1,7 @@
 class HSP:
     def __init__(self, QNAME, QPOS, RNAME, RPOS):
         self.BIN_SIZE = 100
-        self.SLIDING_SIZE = 71
+        self.SLIDING_SIZE = 100
 
         self.QNAME = QNAME
         self.QsPOS = QPOS
