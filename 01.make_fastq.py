@@ -16,7 +16,7 @@ for seqName in seqName_LIST:
     ref_DICT[seqName] = ''.join(ref_DICT[seqName])
 
 readLength = 100
-skipN = 71
+skipN = 100
 quality = 'I'*readLength
 fout = open('query_100.fastq', 'w')
 
