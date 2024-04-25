@@ -35,6 +35,7 @@ class HSP:
 
 from itertools import groupby
 fin = open('query_100.sam')
+fout = open('query_100.exact_pos', 'w')
 
 for line in fin:
     if line.startswith('@PG') == True:
@@ -59,7 +60,7 @@ for key, group in groupby(fin, lambda line: line.split('\t')[0]):
     for hsp in dHSP_LIST:
         #print("aaa", hsp.info())
         if hsp.readN != 1:
-            print('\t'.join(map(str, hsp.info())))
+            fout.write('\t'.join(map(str, hsp.info())) + '\n')
     
     dHSP_LIST = nHSP_LIST
     nHSP_LIST = []
@@ -100,10 +101,11 @@ for key, group in groupby(fin, lambda line: line.split('\t')[0]):
     for hsp in dHSP_LIST:
         #print("bbb", hsp.info())
         if hsp.readN != 1:
-            print('\t'.join(map(str, hsp.info())))
-
+            fout.write('\t'.join(map(str, hsp.info())) + '\n')
 
 for hsp in nHSP_LIST:
     #print("ccc", hsp.info())
     if hsp.readN != 1:
-        print('\t'.join(map(str, hsp.info())))
+        fout.write('\t'.join(map(str, hsp.info())) + '\n')
+fout.close()
+fin.close()
