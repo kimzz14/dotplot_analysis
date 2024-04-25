@@ -11,6 +11,8 @@ class HSP:
         self.RsPOS = RPOS
         self.RePOS = RPOS + self.BIN_SIZE - 1
 
+        self.readN = 1
+
     def Q_isNext(self, QNAME, QPOS):
         if self.QNAME == QNAME:
             if self.QePOS + 1 == QPOS + self.BIN_SIZE - self.SLIDING_SIZE:
@@ -24,6 +26,7 @@ class HSP:
         return False
 
     def add(self, QNAME, QPOS, RNAME, RPOS):
+        self.readN += 1
         self.QePOS = QPOS + self.BIN_SIZE - 1
         self.RePOS = RPOS + self.BIN_SIZE - 1
 
@@ -54,8 +57,9 @@ for key, group in groupby(fin, lambda line: line.split('\t')[0]):
             dHSP_LIST += [cHSP]
 
     for hsp in dHSP_LIST:
-        #print("aaa", hsp.RNAME, hsp.QePOS - hsp.QsPOS + 1, hsp.RePOS - hsp.RsPOS + 1, hsp.QsPOS, hsp.QePOS, hsp.RsPOS, hsp.RePOS)
-        print('\t'.join(map(str, hsp.info())))
+        #print("aaa", hsp.info())
+        if hsp.readN != 1:
+            print('\t'.join(map(str, hsp.info())))
     
     dHSP_LIST = nHSP_LIST
     nHSP_LIST = []
@@ -95,9 +99,11 @@ for key, group in groupby(fin, lambda line: line.split('\t')[0]):
 
     for hsp in dHSP_LIST:
         #print("bbb", hsp.info())
-        print('\t'.join(map(str, hsp.info())))
+        if hsp.readN != 1:
+            print('\t'.join(map(str, hsp.info())))
 
 
 for hsp in nHSP_LIST:
-    #print("ccc", nHSP.info())
-    print('\t'.join(map(str, hsp.info())))
+    #print("ccc", hsp.info())
+    if hsp.readN != 1:
+        print('\t'.join(map(str, hsp.info())))
